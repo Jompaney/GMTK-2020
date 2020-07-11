@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
     private string RightBinding;
     private string UpBinding;
     private Vector3 intersectionPos;
+    public Animator anim;
 
 
     // Start is called before the first frame update
@@ -59,10 +60,10 @@ public class Movement : MonoBehaviour
             RightText.text = RightBinding;
             UpText.text = UpBinding;
         }
-        foreach (var item in randomFour)
-        {
-            Debug.Log(item);
-        }
+        //foreach (var item in randomFour)
+        //{
+        //    Debug.Log(item);
+        //}
     }
     private void OnTriggerExit(Collider other)
     {
@@ -71,6 +72,11 @@ public class Movement : MonoBehaviour
             intersectionPhase = false;
             TimeManager.StopSlowMotion();
         }
+
+        LeftText.text = "";
+        RightText.text = "";
+        UpText.text = "";
+
         randomFour.Clear();
         HasTurned = false;
     }
@@ -86,8 +92,8 @@ public class Movement : MonoBehaviour
             }
         }
         LeftBinding = randomFour[0].ToString();
-        RightBinding = randomFour[1].ToString();
-        UpBinding = randomFour[2].ToString();
+        RightBinding = randomFour[2].ToString();
+        UpBinding = randomFour[1].ToString();
     }
 
     void TurnDirection()
@@ -95,8 +101,10 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(randomFour[0]))
         {
             Debug.Log("111");
-            transform.Rotate(Vector3.up, -90);
+            anim.SetTrigger("Left");
+            //transform.Rotate(Vector3.up, -90);
             HasTurned = true;
+
 
             TimeManager.StopSlowMotion();
             intersectionPhase = false;
@@ -113,13 +121,20 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(randomFour[2]))
         {
             Debug.Log("ww333ww");
-            transform.Rotate(Vector3.up, 90);
+            anim.SetTrigger("Right");
+
+            //transform.Rotate(Vector3.up, 90);
             HasTurned = true;
 
             TimeManager.StopSlowMotion();
             intersectionPhase = false;
             transform.position = intersectionPos;
         }
+
+    }
+
+    void RotatLeft()
+    {
 
     }
 }
