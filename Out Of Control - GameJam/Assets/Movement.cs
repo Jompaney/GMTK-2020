@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     public List<KeyCode> Keys;
     List<KeyCode> randomFour;
     bool intersectionPhase = false;
+    private bool HasTurned = false;
 
 
     // Start is called before the first frame update
@@ -21,10 +22,11 @@ public class Movement : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
-        if (intersectionPhase)
+        if ((intersectionPhase)&&(!HasTurned))
         {
             TurnDirection();
         }
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,11 +51,12 @@ public class Movement : MonoBehaviour
             TimeManager.StopSlowMotion();
         }
         randomFour.Clear();
+        HasTurned = false;
     }
 
     void KeyBinds()
     {
-        while (randomFour.Count<4)
+        while (randomFour.Count<3)
         {
             var index = Random.Range(0, Keys.Count-1);
             if(!randomFour.Contains(Keys[index]))
@@ -65,9 +68,11 @@ public class Movement : MonoBehaviour
 
     void TurnDirection()
     {
-        if(Input.GetKey(randomFour[0]))
+        if(Input.GetKeyDown(randomFour[0]))
         {
             Debug.Log("111");
+            transform.Rotate(Vector3.up, 90);
+            HasTurned = true;
         }
         if (Input.GetKey(randomFour[1]))
         {
@@ -77,9 +82,9 @@ public class Movement : MonoBehaviour
         {
             Debug.Log("ww333ww");
         }
-        if (Input.GetKey(randomFour[3]))
-        {
-            Debug.Log("444");
-        }
+        //if (Input.GetKey(randomFour[3]))
+        //{
+        //    Debug.Log("444");
+        //}
     }
 }
