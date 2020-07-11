@@ -157,6 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 5
   TimeManager: {fileID: 433315521}
+  Keys: 6100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a000000
 --- !u!135 &37222309
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -519,7 +520,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290106342}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.7831, y: 1, z: 5.874}
+  m_LocalPosition: {x: 2, y: 1, z: 5.874}
   m_LocalScale: {x: 1, y: 1, z: 4.5661}
   m_Children: []
   m_Father: {fileID: 0}
