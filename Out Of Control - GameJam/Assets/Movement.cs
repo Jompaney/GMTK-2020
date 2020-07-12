@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -50,7 +51,7 @@ public class Movement : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Wall"))
         {
-            
+            SceneManager.LoadScene(2);
         }
     }
 
@@ -118,7 +119,7 @@ public class Movement : MonoBehaviour
 
             TimeManager.StopSlowMotion();
             intersectionPhase = false;
-            transform.position = new Vector3(intersectionPos.x, transform.position.y, intersectionPos.z);
+            //transform.position = new Vector3(intersectionPos.x, transform.position.y, intersectionPos.z);
         }
         if (Input.GetKey(randomFour[2]))
         {
