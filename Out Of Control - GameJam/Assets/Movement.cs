@@ -51,6 +51,10 @@ public class Movement : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Wall"))
         {
+            SceneManager.LoadScene(3);
+        }
+        if (collision.gameObject.CompareTag("Goal"))
+        {
             SceneManager.LoadScene(2);
         }
     }
