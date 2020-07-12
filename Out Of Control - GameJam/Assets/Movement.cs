@@ -22,6 +22,7 @@ public class Movement : MonoBehaviour
     private Vector3 intersectionPos;
     public Animator anim;
     public float damping;
+    public ParticleSystem ps;
 
     public float fadeTime;
     float x;
@@ -118,6 +119,7 @@ public class Movement : MonoBehaviour
             intersectionPhase = false;
             transform.position = new Vector3(intersectionPos.x, transform.position.y, intersectionPos.z);
             TimeManager.slowdownFactor += 0.01f;
+            //ps.Play();
         }
         if (Input.GetKey(randomFour[1]))
         {
