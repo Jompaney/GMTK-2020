@@ -44,6 +44,14 @@ public class Movement : MonoBehaviour
         {
             TurnDirection();
         }
+        
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Wall"))
+        {
+            
+        }
     }
 
     private void OnTriggerEnter(Collider other)
