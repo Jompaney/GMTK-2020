@@ -10,8 +10,14 @@ PrefabInstance:
     - target: {fileID: 8871222131786153534, guid: 57f442638b4901c47a1a1fd14a8b2987,
         type: 3}
       propertyPath: m_Name
-      value: IntersectionsBig
+      value: IntersectionsBig Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8871222131786153534, guid: 57f442638b4901c47a1a1fd14a8b2987,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 8871222131786153535, guid: 57f442638b4901c47a1a1fd14a8b2987,
         type: 3}
       propertyPath: m_LocalPosition.x
