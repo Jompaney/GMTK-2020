@@ -102,7 +102,7 @@ public class Movement : MonoBehaviour
             transform.Rotate(Vector3.up, -90);
             TimeManager.StopSlowMotion();
             intersectionPhase = false;
-            transform.position = intersectionPos;
+            transform.position = new Vector3(intersectionPos.x, transform.position.y, intersectionPos.z);
         }
         if (Input.GetKey(randomFour[1]))
         {
@@ -110,7 +110,7 @@ public class Movement : MonoBehaviour
 
             TimeManager.StopSlowMotion();
             intersectionPhase = false;
-            transform.position = intersectionPos;
+            transform.position = new Vector3(intersectionPos.x, transform.position.y, intersectionPos.z);
         }
         if (Input.GetKey(randomFour[2]))
         {
@@ -121,7 +121,7 @@ public class Movement : MonoBehaviour
 
             TimeManager.StopSlowMotion();
             intersectionPhase = false;
-            transform.position = intersectionPos;
+            transform.position = new Vector3(intersectionPos.x, transform.position.y, intersectionPos.z);
         }
 
     }

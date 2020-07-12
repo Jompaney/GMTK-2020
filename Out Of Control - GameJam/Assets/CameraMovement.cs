@@ -4,25 +4,33 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public Transform target;
-    public float smoothTime = 0.1f;
-    public float speed = 3.0f;
-
-    public float followDistance = 10f;
-    public float verticalBuffer = 1.5f;
-    public float horizontalBuffer = 0f;
-
-    private Vector3 velocity = Vector3.zero;
-
-    public Quaternion rotation = Quaternion.identity;
-
-    public float yRotation = 0.0f;
-
-    void Update()
+    public Transform objectToFollowTransform;
+    public Vector3 offset;
+    public float followSpeed = 10;
+    public float lookSpeed = 10;
+    void Start()
     {
-        Vector3 targetPosition = target.TransformPoint(new Vector3(horizontalBuffer, followDistance, verticalBuffer));
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
-        //this is the code that solves the problem
-        transform.eulerAngles = new Vector3(90, target.transform.eulerAngles.y, 0);
+        objectToFollowTransform = GameObject.Find("Playa").GetComponent<Transform>();
+    }
+
+    void LateUpdate()
+    {
+        LookAtTarget();
+        MoveToTarget();
+    }
+
+    public void LookAtTarget()
+    {
+        Vector3 lookDirection = objectToFollowTransform.position - transform.position;
+        Quaternion rot = Quaternion.LookRotation(lookDirection, Vector3.up);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, lookSpeed * Time.deltaTime);
+    }
+
+    public void MoveToTarget()
+    {
+        Vector3 targetPos = objectToFollowTransform.position + objectToFollowTransform.forward * offset.z +
+                                                               objectToFollowTransform.right * offset.x +
+                                                               objectToFollowTransform.up * offset.y;
+        transform.position = Vector3.Lerp(transform.position, targetPos, followSpeed * Time.deltaTime);
     }
 }
