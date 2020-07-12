@@ -24,7 +24,7 @@ public class MenuManagerMain : MonoBehaviour
 
     public void ExitMenuButton()
     {
-        SceneManager.LoadScene("StartScene");
+        SceneManager.LoadScene(0);
     }
 
     public void OptionsExit()
