@@ -103,6 +103,7 @@ public class Movement : MonoBehaviour
 
     void TurnDirection()
     {
+        
         if (Input.GetKeyDown(randomFour[0]))
         {
             Debug.Log("111");
@@ -112,6 +113,7 @@ public class Movement : MonoBehaviour
             TimeManager.StopSlowMotion();
             intersectionPhase = false;
             transform.position = new Vector3(intersectionPos.x, transform.position.y, intersectionPos.z);
+            TimeManager.slowdownFactor += 0.01f;
         }
         if (Input.GetKey(randomFour[1]))
         {
@@ -120,6 +122,7 @@ public class Movement : MonoBehaviour
             TimeManager.StopSlowMotion();
             intersectionPhase = false;
             //transform.position = new Vector3(intersectionPos.x, transform.position.y, intersectionPos.z);
+            TimeManager.slowdownFactor += 0.01f;
         }
         if (Input.GetKey(randomFour[2]))
         {
@@ -131,6 +134,7 @@ public class Movement : MonoBehaviour
             TimeManager.StopSlowMotion();
             intersectionPhase = false;
             transform.position = new Vector3(intersectionPos.x, transform.position.y, intersectionPos.z);
+            TimeManager.slowdownFactor += 0.01f;
         }
 
     }
