@@ -20,13 +20,16 @@ public class Movement : MonoBehaviour
     private string UpBinding;
     private Vector3 intersectionPos;
     public Animator anim;
+    public float damping;
+
+    public float fadeTime;
+    float x;
 
 
     void Start()
     {
+        x = movementSpeed;
         randomFour = new List<KeyCode> { };
-
-        transform.Rotate(Vector3.up, 90);
 
         LeftText = GameObject.Find("Text Left").GetComponent<TextMeshProUGUI>();
         RightText = GameObject.Find("Text Right").GetComponent<TextMeshProUGUI>();
@@ -94,10 +97,9 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(randomFour[0]))
         {
             Debug.Log("111");
-            anim.SetTrigger("Left");
+            //anim.SetTrigger("Left");
             HasTurned = true;
-
-
+            transform.Rotate(Vector3.up, -90);
             TimeManager.StopSlowMotion();
             intersectionPhase = false;
             transform.position = intersectionPos;
@@ -113,8 +115,8 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(randomFour[2]))
         {
             Debug.Log("ww333ww");
-            anim.SetTrigger("Right");
-
+            //anim.SetTrigger("Right");
+            transform.Rotate(Vector3.up, 90);
             HasTurned = true;
 
             TimeManager.StopSlowMotion();
@@ -124,14 +126,24 @@ public class Movement : MonoBehaviour
 
     }
 
-    void RotateLeft()
+    IEnumerator RotateLeft()
     {
         Debug.Log("Left");
-        transform.Rotate(Vector3.up, -90);
+        for (float i = 0.01f; i < fadeTime; i+=0.1f)
+        {
+            var desiredRotQ = Quaternion.Euler(transform.eulerAngles.x, 90, transform.eulerAngles.z);
+            transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotQ, i/fadeTime);
+            yield return null;
+        }
     }
-    void RotateRight()
+    IEnumerator RotateRight()
     {
         Debug.Log("Right");
-        transform.Rotate(Vector3.up, 90);
+        for (float i = 0.01f; i < fadeTime; i += 0.1f)
+        {
+            var desiredRotQ = Quaternion.Euler(transform.eulerAngles.x, -90, transform.eulerAngles.z);
+            transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotQ, i / fadeTime);
+            yield return null;
+        }
     }
 }
