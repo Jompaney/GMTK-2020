@@ -18,6 +18,7 @@ public class MenuManagerMain : MonoBehaviour
 
     public void MenuButton()
     {
+        Time.timeScale = 0f;
         Menu.SetActive(true);
     }
 
@@ -34,6 +35,7 @@ public class MenuManagerMain : MonoBehaviour
     public void ExitToGame()
     {
         Menu.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void OptionsButton()
