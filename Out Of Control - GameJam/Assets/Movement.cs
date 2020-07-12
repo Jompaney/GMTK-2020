@@ -22,32 +22,29 @@ public class Movement : MonoBehaviour
     public Animator anim;
 
 
-    // Start is called before the first frame update
     void Start()
     {
+        randomFour = new List<KeyCode> { };
+
+        transform.Rotate(Vector3.up, 90);
+
         LeftText = GameObject.Find("Text Left").GetComponent<TextMeshProUGUI>();
         RightText = GameObject.Find("Text Right").GetComponent<TextMeshProUGUI>();
         UpText = GameObject.Find("Text Up").GetComponent<TextMeshProUGUI>();
 
-        randomFour = new List<KeyCode> { };
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
         if ((intersectionPhase) && (!HasTurned))
         {
             TurnDirection();
-
         }
-
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.CompareTag("Intersection"))
         {
             intersectionPos = other.transform.position;
@@ -60,10 +57,6 @@ public class Movement : MonoBehaviour
             RightText.text = RightBinding;
             UpText.text = UpBinding;
         }
-        //foreach (var item in randomFour)
-        //{
-        //    Debug.Log(item);
-        //}
     }
     private void OnTriggerExit(Collider other)
     {
@@ -102,7 +95,6 @@ public class Movement : MonoBehaviour
         {
             Debug.Log("111");
             anim.SetTrigger("Left");
-            //transform.Rotate(Vector3.up, -90);
             HasTurned = true;
 
 
@@ -123,7 +115,6 @@ public class Movement : MonoBehaviour
             Debug.Log("ww333ww");
             anim.SetTrigger("Right");
 
-            //transform.Rotate(Vector3.up, 90);
             HasTurned = true;
 
             TimeManager.StopSlowMotion();
@@ -133,8 +124,14 @@ public class Movement : MonoBehaviour
 
     }
 
-    void RotatLeft()
+    void RotateLeft()
     {
-
+        Debug.Log("Left");
+        transform.Rotate(Vector3.up, -90);
+    }
+    void RotateRight()
+    {
+        Debug.Log("Right");
+        transform.Rotate(Vector3.up, 90);
     }
 }
